@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     phone: DataTypes.STRING
   }, {
     hooks: {
-      beforeCreate: (user, options) => {
+      beforeCreate: async (user, options) => {
         user.password = await hashpassword(user.password);
       }
     },
@@ -35,9 +35,8 @@ module.exports = (sequelize, DataTypes) => {
 };
 
 async function hashpassword(pass) {
-
   const saltRounds = 10;
-  const hash = await bcrypt.hash(pass, saltRounds);
+  const hash = await bcrypt.hash(pass, saltRounds)
 
   return hash
 }

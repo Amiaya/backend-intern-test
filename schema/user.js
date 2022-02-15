@@ -5,7 +5,7 @@ const RegisterSchema = Joi.object({
     lastname: Joi.string().required(),
     email: Joi.string().email().required(),
     phone: Joi.string().min(11).max(14).required(),
-    password: Joi.string().required()
+    password: Joi.string().min(8).required()
 })
 
 module.exports = {
