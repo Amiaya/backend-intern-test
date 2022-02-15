@@ -8,6 +8,12 @@ const RegisterSchema = Joi.object({
     password: Joi.string().min(8).required()
 })
 
+const LoginSchema = Joi.object({
+    email: Joi.string().email().required(),
+    password: Joi.string().required()
+})
+
 module.exports = {
     RegisterSchema,
+    LoginSchema
 }
