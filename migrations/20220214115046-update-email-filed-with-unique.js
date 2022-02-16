@@ -22,6 +22,8 @@ module.exports = {
      * await queryInterface.dropTable('users');
      */
 
-    await queryInterface.changeColumn('Users', 'email')
+    await queryInterface.changeColumn('Users', 'email', {
+      type: Sequelize.STRING
+    })
   }
 };

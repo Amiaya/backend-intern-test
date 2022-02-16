@@ -3,7 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "yarn nodemon app.js",
+    "migrate": "yarn sequelize db:migrate",
+    "migrate:reset": "yarn sequelize db:migrate:undo:all && npm run migrate",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -19,7 +24,16 @@
     "sequelize": "^6.16.1"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "supertest": "^6.2.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
